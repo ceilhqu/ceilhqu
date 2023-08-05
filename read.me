@@ -1,3 +1,6 @@
-实时更新 通过flask，的debug 和 pachong.py定义一个计时爬取hdxw网站，并保存到template目录。
-nginx deny all，实现.md的不可访问 ，nginx这是华大新闻的站点（本目录html），见本目录conf文件。
-反向代理 到 华侨大学新闻数据 ，具体见conf
+实时更新 通过flask，的debug 和 pachong.py定义一个计时爬取hdxw网站，并保存到flask的template目录。
+nginx deny all，实现index.md的不可访问 ，nginx这是华大新闻的站点（本目录html），见本目录conf文件（curl xx：80/）
+反向代理 到 华侨大学新闻数据 ，具体见conf（curl xx:80/hdxw/）
+
+使用github，中间遇到公钥权限问题Permission denied，
+部分教程没给出私钥配置的过程。，只有github添加公钥，然后好像就成功了，其实不是的
