@@ -1,6 +1,6 @@
 实时更新 通过flask，的debug 和 pachong.py定义一个计时爬取hdxw网站，并保存到flask的template目录。
-nginx deny all，实现index.md的不可访问 ，nginx这是华大新闻的站点（本目录html），见本目录conf文件（curl xx：80/）
-反向代理 到 华侨大学新闻数据 ，具体见conf（curl xx:80/hdxw/）
+nginx deny all，实现index.md的不可访问 ，nginx这是华大新闻的站点（本目录html），见本目录conf文件（curl localhost：80/）
+反向代理 到 华侨大学新闻数据 ，具体见conf（curl localhost:80/hdxw/）
 
 使用github，中间遇到公钥权限问题Permission denied，
 部分教程没给出私钥配置的过程。，只有github添加公钥，然后好像就成功了，其实不是的
@@ -15,4 +15,33 @@ nginx deny all，实现index.md的不可访问 ，nginx这是华大新闻的站�
 
 #查看网页
 curl localhost：80
-curl 107.172.190.210:80/hdxw
+curl 107.172.190.210:80/hdxw错了（是这个curl localhost:80/hdxw/）
+
+参考网页：
+https://dormousehole.readthedocs.io/en/latest/quickstart.html快速上手
+等久了吧？本文会给您好好介绍如何上手 Flask 。
+https://www.cnblogs.com/lywJ/p/10710361.html配置nginx
+https://www.cnblogs.com/lz0925/p/10794616.html第三步：添加ssh-key私钥到  ssh-agent
+
+"""
+(venv) root@racknerd-5272ce:~/myproject# ssh-add -l -E sha256
+The agent has no identities.
+
+这可能是因为您的SSH代理当前没有加载任何身份。您可以尝试运行以下命令来添加身份到SSH代理中：
+ssh-add
+如果您的SSH密钥存储在非默认位置，您可以指定密钥的路径：
+ssh-add /path/to/private/key
+完成后，再次运行以下命令来查看已加载的身份：
+ssh-add -l -E sha256
+如果您的SSH密钥仍然无法加载，请确保您的密钥文件存在且正确，并且您的SSH代理正在运行。
+xxx
+当您在使用SSH连接时遇到"权限被拒绝（公钥）"的错误消息时，通常是由以下原因之一引起的：
+
+公钥未正确添加到GitHub：确保您已将正确的公钥添加到您的GitHub帐户。您可以在GitHub帐户的设置中的SSH和GPG密钥部分检查和添加公钥。
+
+错误的公钥格式：公钥应该是以"ssh-rsa"开头的一行文本。请确保您的公钥格式正确，没有多余的空格或换行符。
+
+SSH代理未正确加载密钥：确保您的SSH代理正在运行，并且已正确加载了您的私钥。您可以运行"ssh-add -l"命令来检查已加载的身份。
+
+私钥文件权限不正确：私钥文件的权限应设置为600。您可以使用"chmod 600 /path/to/private/key"命令来更改权限。
+"""
